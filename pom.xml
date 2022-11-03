@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sample</groupId>
-	<artifactId>redis-stream</artifactId>
+	<artifactId>redis-stream-producer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>redis-stream</name>
+	<name>redis-stream-producer</name>
 	<description>basic app to show redis streams operations</description>
 	<properties>
 		<java.version>11</java.version>
