@@ -1,7 +1,5 @@
 package com.sample.redis.publisher;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.redis.model.VideoDetails;
 import com.sample.redis.repo.VideoRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -36,14 +34,11 @@ public class VideoEventPublisher {
     }
 
     @Scheduled(fixedRateString = "${publish.rate}")
-    public void publishEvent() throws JsonProcessingException {
-        VideoDetails videoDetails = this.videoRepository.getRandomVideo();
-        ObjectMapper mapper = new ObjectMapper();
-        String rawStr = null;
-        rawStr = mapper.writeValueAsString(videoDetails);
-        log.info("Video Details :: " + rawStr);
-        ObjectRecord<String, String> record = StreamRecords.newRecord()
-                .ofObject(rawStr)
+    public void publishEvent() {
+        VideoDetails VideoDetails = this.videoRepository.getRandomVideo();
+        log.info("Video Details :: " + VideoDetails);
+        ObjectRecord<String, VideoDetails> record = StreamRecords.newRecord()
+                .ofObject(VideoDetails)
                 .withStreamKey(streamKey);
         this.redisTemplate
                 .opsForStream()
