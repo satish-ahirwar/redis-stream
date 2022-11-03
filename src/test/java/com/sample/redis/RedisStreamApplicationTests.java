@@ -1,4 +1,4 @@
-package com.sample.redisstream;
+package com.sample.redis;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
